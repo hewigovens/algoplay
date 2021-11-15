@@ -1,0 +1,13 @@
+{
+  "amt": 2000,
+  "fee": 1000,
+  "fv": 17404789,
+  "gen": "mainnet-v1.0",
+  "gh": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+  "grp": "Nw2+9UuGAnQXAQQ222tMveji9Us3bWnds1vJ7DoY7VY=",
+  "lv": 17405789,
+  "note": "AQ==",
+  "rcv": "WU6DODINHD23JIHIEQRQNAI73V6KPD5KXX6R4MT3QLKOR3XI7ASAKTQH3Y",
+  "snd": "APA4QOD2MISMREIX4LOZZU7RKAX7N2B5GDZMFTZXNOOLNLHOWKC5KHHORE",
+  "type": "pay"
+}
