@@ -1,0 +1,12 @@
+{
+  "amt": 9392,
+  "fee": 1000,
+  "fv": 17371556,
+  "gen": "mainnet-v1.0",
+  "gh": "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=",
+  "grp": "OMi/Qnwj62+eey2a6prmYkjAbbaK26Q6hrxWdKjCacM=",
+  "lv": 17372556,
+  "rcv": "HN57OYROFZBSJ6YSOXU2ZVVZZRYXTATLBXMGFWWNOIQ7XG6UWR2G55I5DU",
+  "snd": "QOFGDVV6JDVZT7YFFML3UEFFSXNXPAP2EOB5P73GHNXLC7JJJZIGJRHFSY",
+  "type": "pay"
+}

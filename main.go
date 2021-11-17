@@ -1,6 +1,7 @@
 package main
 
 import (
+	"algoplay/algorand"
 	"encoding/base32"
 	"encoding/json"
 	"fmt"
@@ -8,28 +9,10 @@ import (
 
 	"crypto/sha512"
 	"encoding/base64"
-
-	"github.com/algorand/go-algorand-sdk/encoding/msgpack"
 )
 
-// Payment tx
-type Transaction struct {
-	Type string `codec:"type"`
-
-	Sender      []byte `codec:"snd"`
-	Fee         uint64 `codec:"fee"`
-	FirstValid  uint64 `codec:"fv"`
-	LastValid   uint64 `codec:"lv"`
-	Note        []byte `codec:"note"`
-	GenesisID   string `codec:"gen"`
-	GenesisHash []byte `codec:"gh"`
-	Group       []byte `codec:"grp"`
-	Receiver    []byte `codec:"rcv"`
-	Amount      uint64 `codec:"amt"`
-}
-
 func main() {
-	data, _ := os.ReadFile("v2.json")
+	data, _ := os.ReadFile("v2_2.json")
 
 	var dict map[string]interface{}
 	_ = json.Unmarshal(data, &dict)
@@ -40,6 +23,8 @@ func main() {
 		if val, ok := dict[key]; ok {
 			decoded, _ := base64.StdEncoding.DecodeString(val.(string))
 			dict[key] = decoded
+		} else {
+			dict[key] = []byte{}
 		}
 	}
 
@@ -51,7 +36,7 @@ func main() {
 		dict[key] = pubkey
 	}
 
-	tx := Transaction{
+	tx := algorand.Transaction{
 		Type:        "pay",
 		Sender:      dict["snd"].([]byte),
 		Fee:         uint64(dict["fee"].(float64)),
@@ -65,7 +50,7 @@ func main() {
 		Amount:      uint64(dict["amt"].(float64)),
 	}
 
-	buf := msgpack.Encode(tx)
+	buf := algorand.Encode(tx)
 
 	sign := []byte(string("TX"))
 	sign = append(sign, buf...)
@@ -77,5 +62,6 @@ func main() {
 
 	txId := base32.StdEncoding.WithPadding(base32.NoPadding).EncodeToString(sha_512_256[:])
 	fmt.Printf("base32 id: %s\n", txId)
-	fmt.Println("expected : ZRWRJSHSMUCP7Y3HBUDKNCR32GSZLEHDLLJMBEXUTK4ZXHVGE22Q")
+	// fmt.Println("expected : ZRWRJSHSMUCP7Y3HBUDKNCR32GSZLEHDLLJMBEXUTK4ZXHVGE22Q")
+	fmt.Println("expected : 4SRNYRDIAOY3BFLAGKIZE5FTYXXPMFN36D5XCQRRH6WY55WDHRXA")
 }
